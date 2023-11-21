@@ -1,0 +1,7 @@
+IdleMotion
+Reach
+Take
+Release
+PutSomethingSomewhere
+WashDishes inHand { IsSubclassOf ( #CleaningTool )  } actedOn { IsSubclassOf ( #FoodUtensil )  }
+GranularActivity_7959886098509256903 inHand { IsSubclassOf ( #Cube )  } actedOn { IsSubclassOf ( #Cube )  }
