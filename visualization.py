@@ -7,6 +7,7 @@ import networkx as nx
 
 file_path = 'log_2023-11-21_101155/task_graph.txt'
 
+
 def parse_graph(file_path):
     graph = nx.DiGraph()
     current_node = None
@@ -38,17 +39,10 @@ def parse_graph(file_path):
     return graph
 
 
-def on_click(event):
-    if not hasattr(event, 'nodes') or not event.nodes:
-        return
-    node = event.nodes[0]
-    print(f"Clicked on node: {node}")
-
-
 G = parse_graph(file_path)
 
 root = tk.Tk()
-root.wm_title("Graph Interaction")
+root.wm_title("Visualization")
 
 fig, ax = plt.subplots(figsize=(10, 7))
 canvas = FigureCanvasTkAgg(fig, master=root)
@@ -56,6 +50,7 @@ canvas = FigureCanvasTkAgg(fig, master=root)
 start_node = None
 end_node = None
 pos = nx.spring_layout(G)
+
 
 def draw_graph():
     ax.clear()
@@ -68,6 +63,7 @@ def draw_graph():
         nx.draw_networkx_nodes(G, pos, nodelist=[end_node], node_size=2500, node_color='blue', ax=ax)
 
     canvas.draw()
+
 
 def on_click(event):
     global start_node, end_node
@@ -89,6 +85,7 @@ def on_click(event):
             return
 
     messagebox.showinfo("Info", "No node was clicked.")
+
 
 draw_graph()
 
