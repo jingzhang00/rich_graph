@@ -8,6 +8,7 @@ import time
 file_path = 'log_2023-11-21_101155/task_graph.txt'
 delay = 2
 
+
 def parse_graph(file_path):
     graph = nx.DiGraph()
     with open(file_path, 'r') as file:
@@ -60,7 +61,7 @@ def build_graph_dynamically(graph, delay):
                 draw_graph(dynamic_graph, highlight=[(node, neighbor)], update=True)
                 time.sleep(delay)
 
-    messagebox.showinfo("Notification", "Graph construction complete.")
+    messagebox.showinfo("Info", "Graph construction complete.")
 
 
 def draw_graph(graph, highlight=None, update=False):
