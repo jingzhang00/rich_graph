@@ -24,17 +24,13 @@ def parse_graph(file_path):
                 neighbors = []
                 weights = []
             elif 'neighbors[' in line and current_node:
-                line_parts = line.split(':')
-                if len(line_parts) > 1:
-                    neighbor = line_parts[1].strip()
+                if ':' in line:
+                    neighbor = line.split(':')[1].strip()
                     neighbors.append(neighbor)
             elif 'weights[' in line and current_node:
-                line_parts = line.split(':')
-                if len(line_parts) > 1:
-                    weight_str = line_parts[1].strip()
-                    if weight_str.isdigit():
-                        weight = int(weight_str)
-                        weights.append(weight)
+                if ':' in line:
+                    weight = int(line.split(':')[1].strip())
+                    weights.append(weight)
 
         if current_node and neighbors:
             for neighbor, weight in zip(neighbors, weights):
