@@ -6,7 +6,7 @@ import networkx as nx
 import time
 
 file_path = 'log_2023-11-21_101155/task_graph.txt'
-
+delay = 2
 
 def parse_graph(file_path):
     graph = nx.DiGraph()
@@ -43,28 +43,45 @@ def parse_graph(file_path):
     return graph
 
 
-def build_graph_dynamically(graph, delay=1):
+def build_graph_dynamically(graph, delay):
     dynamic_graph = nx.DiGraph()
     for node in graph.nodes:
-        dynamic_graph.add_node(node)
-        draw_graph(dynamic_graph)
-        time.sleep(delay)
-        for neighbor in graph.neighbors(node):
-            dynamic_graph.add_edge(node, neighbor, weight=graph[node][neighbor]['weight'])
-            draw_graph(dynamic_graph)
+        if node not in dynamic_graph:
+            dynamic_graph.add_node(node)
+            draw_graph(dynamic_graph, highlight=[node], update=True)
             time.sleep(delay)
-    return dynamic_graph
+
+        for neighbor in graph.neighbors(node):
+            if neighbor not in dynamic_graph:
+                dynamic_graph.add_edge(node, neighbor, weight=graph[node][neighbor]['weight'])
+                draw_graph(dynamic_graph, highlight=[(node, neighbor)], update=True)
+                time.sleep(delay)
+                dynamic_graph.add_node(neighbor)
+                draw_graph(dynamic_graph, highlight=[neighbor], update=True)
+                time.sleep(delay)
+            elif (node, neighbor) not in dynamic_graph.edges:
+                dynamic_graph.add_edge(node, neighbor, weight=graph[node][neighbor]['weight'])
+                draw_graph(dynamic_graph, highlight=[(node, neighbor)], update=True)
+                time.sleep(delay)
+
+    messagebox.showinfo("Notification", "Graph construction complete.")
 
 
-def draw_graph(graph):
+def draw_graph(graph, highlight=None, update=False):
     ax.clear()
-    nx.draw(graph, pos, with_labels=True, node_size=2000, node_color='skyblue', ax=ax)
+    nx.draw(graph, pos, with_labels=True, node_size=2000, node_color='skyblue', edge_color='gray', ax=ax)
+    if highlight:
+        if isinstance(highlight[0], tuple):
+            nx.draw_networkx_edges(graph, pos, edgelist=highlight, edge_color='red', width=2, ax=ax)
+        else:
+            nx.draw_networkx_nodes(graph, pos, nodelist=highlight, node_size=2500, node_color='green', ax=ax)
     if start_node is not None:
         nx.draw_networkx_nodes(graph, pos, nodelist=[start_node], node_size=2500, node_color='red', ax=ax)
     if end_node is not None:
         nx.draw_networkx_nodes(graph, pos, nodelist=[end_node], node_size=2500, node_color='blue', ax=ax)
     canvas.draw()
-    root.update()
+    if update:
+        root.update()
 
 
 def on_click(event):
@@ -101,5 +118,5 @@ canvas_widget = canvas.get_tk_widget()
 canvas_widget.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
 canvas.mpl_connect("button_press_event", on_click)
 
-root.after(1000, lambda: build_graph_dynamically(G, delay=1))
+root.after(1000, lambda: build_graph_dynamically(G, delay))
 tk.mainloop()
