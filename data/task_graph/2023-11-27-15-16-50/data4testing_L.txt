@@ -1,0 +1,828 @@
+@relation	VRData
+@attribute	Hand	{NotMove, Move, ToolUse}
+@attribute	ObjectActedOn	{None, Something}
+@attribute	ObjectInHand	{None, Something}
+@attribute	HandState	{Open, Close}
+@attribute	Activity	{IdleMotion, Reach, Take, PutSomethingSomeWhere, Stack}
+
+
+@data
+NotMove	3DPrintedCube_blue	NONE	Open	UnknownActivity	
+NotMove	3DPrintedCube_blue	NONE	Open	UnknownActivity	
+NotMove	3DPrintedCube_blue	NONE	Open	UnknownActivity	
+NotMove	3DPrintedCube_blue	NONE	Open	UnknownActivity	
+NotMove	3DPrintedCube_blue	NONE	Open	UnknownActivity	
+NotMove	3DPrintedCube_blue	NONE	Open	UnknownActivity	
+NotMove	3DPrintedCube_blue	NONE	Open	UnknownActivity	
+NotMove	3DPrintedCube_blue	NONE	Open	UnknownActivity	
+NotMove	3DPrintedCube_blue	NONE	Open	UnknownActivity	
+NotMove	3DPrintedCube_blue	NONE	Open	UnknownActivity	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	IdleMotion	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	IdleMotion	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	IdleMotion	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	IdleMotion	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	IdleMotion	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	IdleMotion	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	IdleMotion	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	IdleMotion	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	IdleMotion	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	IdleMotion	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+NotMove	3DPrintedCube_blue	NONE	Open	GranularActivity_411379250362349787	
+NotMove	3DPrintedCube_blue	NONE	Open	GranularActivity_411379250362349787	
+NotMove	3DPrintedCube_blue	NONE	Open	GranularActivity_411379250362349787	
+NotMove	3DPrintedCube_blue	NONE	Open	GranularActivity_411379250362349787	
+NotMove	3DPrintedCube_blue	NONE	Open	GranularActivity_411379250362349787	
+NotMove	3DPrintedCube_blue	NONE	Open	GranularActivity_411379250362349787	
+NotMove	3DPrintedCube_blue	NONE	Open	GranularActivity_411379250362349787	
+NotMove	3DPrintedCube_blue	NONE	Open	GranularActivity_411379250362349787	
+NotMove	3DPrintedCube_blue	NONE	Open	GranularActivity_411379250362349787	
+NotMove	3DPrintedCube_blue	NONE	Open	GranularActivity_411379250362349787	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	IdleMotion	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	IdleMotion	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	IdleMotion	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	IdleMotion	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	IdleMotion	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	IdleMotion	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	IdleMotion	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	IdleMotion	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	IdleMotion	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	IdleMotion	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+ToolUse	3DPrintedCube_blue	Main Camera	Close	GranularActivity_411379250362349787	
+NotMove	3DPrintedCube_blue	NONE	Open	GranularActivity_411379250362349787	
+NotMove	3DPrintedCube_blue	NONE	Open	GranularActivity_411379250362349787	
+NotMove	3DPrintedCube_blue	NONE	Open	GranularActivity_411379250362349787	
+NotMove	3DPrintedCube_blue	NONE	Open	GranularActivity_411379250362349787	
+NotMove	3DPrintedCube_blue	NONE	Open	GranularActivity_411379250362349787	
+NotMove	3DPrintedCube_blue	NONE	Open	GranularActivity_411379250362349787	
+NotMove	3DPrintedCube_blue	NONE	Open	GranularActivity_411379250362349787	
+NotMove	3DPrintedCube_blue	NONE	Open	GranularActivity_411379250362349787	
+NotMove	3DPrintedCube_blue	NONE	Open	GranularActivity_411379250362349787	
+NotMove	3DPrintedCube_blue	NONE	Open	GranularActivity_411379250362349787	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+Move	3DPrintedCube_blue	NONE	Open	IdleMotion	
+Move	3DPrintedCube_blue	NONE	Open	IdleMotion	
+Move	3DPrintedCube_blue	NONE	Open	IdleMotion	
+Move	3DPrintedCube_blue	NONE	Open	IdleMotion	
+Move	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+Move	3DPrintedCube_blue	NONE	Open	IdleMotion	
+Move	3DPrintedCube_blue	NONE	Open	IdleMotion	
+Move	3DPrintedCube_blue	NONE	Open	IdleMotion	
+Move	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_blue	NONE	Open	IdleMotion	
+Move	3DPrintedCube_blue	NONE	Open	IdleMotion	
+Move	3DPrintedCube_blue	NONE	Open	Reach	
+Move	3DPrintedCube_blue	NONE	Open	Reach	
+Move	3DPrintedCube_blue	NONE	Open	Reach	
+NotMove	3DPrintedCube_blue	NONE	Open	Reach	
+NotMove	3DPrintedCube_blue	NONE	Open	Reach	
+NotMove	3DPrintedCube_blue	NONE	Open	Reach	
+NotMove	3DPrintedCube_blue	NONE	Open	Reach	
+NotMove	3DPrintedCube_blue	NONE	Open	Reach	
+Move	3DPrintedCube_blue	NONE	Open	Reach	
+Move	3DPrintedCube_blue	NONE	Open	Reach	
+Move	3DPrintedCube_blue	NONE	Open	Reach	
+Move	3DPrintedCube_blue	NONE	Open	Reach	
+Move	3DPrintedCube_blue	NONE	Open	Reach	
+Move	3DPrintedCube_blue	NONE	Open	Reach	
+Move	3DPrintedCube_blue	NONE	Open	Reach	
+Move	3DPrintedCube_blue	NONE	Open	Reach	
+Move	3DPrintedCube_blue	NONE	Open	Reach	
+Move	3DPrintedCube_blue	NONE	Open	Reach	
+Move	3DPrintedCube_blue	NONE	Open	Reach	
+Move	3DPrintedCube_blue	NONE	Open	Reach	
+Move	3DPrintedCube_blue	NONE	Open	Reach	
+Move	3DPrintedCube_blue	NONE	Open	Reach	
+Move	3DPrintedCube_blue	NONE	Open	Reach	
+Move	3DPrintedCube_blue	NONE	Open	Reach	
+Move	3DPrintedCube_blue	NONE	Open	Reach	
+Move	3DPrintedCube_blue	NONE	Open	Reach	
+Move	3DPrintedCube_blue	NONE	Open	Reach	
+Move	3DPrintedCube_blue	NONE	Open	Reach	
+Move	NONE	NONE	Open	Reach	
+Move	NONE	NONE	Open	Reach	
+Move	NONE	NONE	Open	Reach	
+Move	NONE	NONE	Open	Reach	
+Move	NONE	NONE	Open	Reach	
+Move	NONE	NONE	Open	Reach	
+NotMove	NONE	NONE	Open	Reach	
+NotMove	NONE	NONE	Open	Reach	
+NotMove	NONE	NONE	Open	Reach	
+NotMove	NONE	NONE	Open	Reach	
+NotMove	NONE	NONE	Open	Reach	
+NotMove	NONE	NONE	Open	Reach	
+NotMove	NONE	NONE	Open	Reach	
+NotMove	NONE	NONE	Open	Reach	
+NotMove	NONE	NONE	Open	Reach	
+NotMove	NONE	NONE	Open	Reach	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+Move	NONE	NONE	Open	IdleMotion	
+Move	NONE	NONE	Open	IdleMotion	
+Move	NONE	NONE	Open	IdleMotion	
+Move	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+Move	NONE	NONE	Open	IdleMotion	
+Move	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	NONE	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	
+NotMove	3DPrintedCube_green	NONE	Open	IdleMotion	

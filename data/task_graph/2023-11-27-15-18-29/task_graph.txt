@@ -1,0 +1,19 @@
+nodes[]
+  nodes[0]: 
+    name: IdleMotion
+    neighbors[]
+      neighbors[0]: Reach
+    weights[]
+      weights[0]: 1
+  nodes[1]: 
+    name: GranularActivity_787251583711367463 inHand { IsSubclassOf ( #Hand )  } actedOn { IsSubclassOf ( #Cube )  }
+    neighbors[]
+      neighbors[0]: IdleMotion
+    weights[]
+      weights[0]: 1
+  nodes[2]: 
+    name: Reach
+    neighbors[]
+      neighbors[0]: IdleMotion
+    weights[]
+      weights[0]: 1

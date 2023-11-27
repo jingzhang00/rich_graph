@@ -1,0 +1,29 @@
+nodes[]
+  nodes[0]: 
+    name: IdleMotion
+    neighbors[]
+      neighbors[0]: GranularActivity_411379250362349787 inHand { IsSubclassOf ( #Camera )  } actedOn { IsSubclassOf ( #Cube )  }
+      neighbors[1]: Reach
+      neighbors[2]: GranularActivity_787251583711367463 inHand { IsSubclassOf ( #Hand )  } actedOn { IsSubclassOf ( #Cube )  }
+    weights[]
+      weights[0]: 2
+      weights[1]: 2
+      weights[2]: 1
+  nodes[1]: 
+    name: GranularActivity_411379250362349787 inHand { IsSubclassOf ( #Camera )  } actedOn { IsSubclassOf ( #Cube )  }
+    neighbors[]
+      neighbors[0]: IdleMotion
+    weights[]
+      weights[0]: 2
+  nodes[2]: 
+    name: Reach
+    neighbors[]
+      neighbors[0]: IdleMotion
+    weights[]
+      weights[0]: 2
+  nodes[3]: 
+    name: GranularActivity_787251583711367463 inHand { IsSubclassOf ( #Hand )  } actedOn { IsSubclassOf ( #Cube )  }
+    neighbors[]
+      neighbors[0]: IdleMotion
+    weights[]
+      weights[0]: 1
