@@ -5,7 +5,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import networkx as nx
 import time
 
-file_path = 'log_2023-11-21_101155/task_graph.txt'
+file_path = 'data/task_graph/2023-11-27-15-09-22/task_graph.txt'
 delay = 2
 
 

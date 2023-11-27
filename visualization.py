@@ -5,7 +5,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import networkx as nx
 
 
-file_path = 'log_2023-11-21_101155/task_graph.txt'
+file_path = 'data/task_graph/multiple_demos/task_graph.txt'
 
 
 def parse_graph(file_path):
