@@ -7,7 +7,7 @@ import time
 import numpy as np
 
 file_path = 'data/task_graph/multiple_demos/task_graph.txt'
-delay = 1
+delay = 2
 
 def parse_graph(file_path):
     graph = nx.DiGraph()

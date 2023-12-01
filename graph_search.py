@@ -154,7 +154,7 @@ def monte_carlo_widest_path(graph, start_node, end_node, iterations=3000, random
     return best_path, best_min_width
 
 
-file_path = 'log_2023-11-21_101155/task_graph2.txt'
+file_path = 'data/task_graph/multiple_demos/task_graph.txt'
 G = parse_graph(file_path)
 
 root = tk.Tk()
