@@ -5,14 +5,12 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import networkx as nx
 import time
 import numpy as np
-
-# Import the custom edge and edge label drawing functions
 import my_networkx as my_nx
-
-
+import random
 
 file_path = 'data/task_graph/multiple_demos/task_graph.txt'
-delay = 2
+delay = 0.5
+
 
 def parse_graph(file_path):
     graph = nx.DiGraph()
@@ -94,7 +92,7 @@ def draw_graph(graph, highlight=None, update=False):
                 else:
                     nx.draw_networkx_edges(graph, pos, edgelist=[item], edge_color='red', width=3,
                                            arrowstyle='-|>', arrowsize=20, ax=ax)
-            else:  # This is a node
+            else:
                 nx.draw_networkx_nodes(graph, pos, nodelist=[item], node_size=node_size, node_color='green', ax=ax)
 
     curved_edge_labels = {edge: edge_weights.get(edge) for edge in curved_edges}
@@ -112,47 +110,7 @@ def draw_graph(graph, highlight=None, update=False):
         root.update()
 
 
-def on_click(event):
-    global start_node, end_node
-    if event.xdata is None or event.ydata is None:
-        return
-    for node, node_pos in pos.items():
-        distance = (
-            (event.xdata - node_pos[0]) ** 2 + (event.ydata - node_pos[1]) ** 2) ** 0.5
-        if distance < 0.1:
-            if start_node is None:
-                start_node = node
-                messagebox.showinfo("Info", f"Start node set to {node}")
-            elif end_node is None and node != start_node:
-                end_node = node
-                messagebox.showinfo("Info", f"End node set to {node}")
-            else:
-                return
-            draw_graph(G)
-            return
-    messagebox.showinfo("Info", "No node was clicked.")
-
-
-root = tk.Tk()
-root.wm_title("Visualization")
-fig, ax = plt.subplots(figsize=(10, 7))
-canvas = FigureCanvasTkAgg(fig, master=root)
-G = parse_graph(file_path)
-pos = nx.spring_layout(G)
-
-start_node = None
-end_node = None
-
-canvas_widget = canvas.get_tk_widget()
-canvas_widget.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
-canvas.mpl_connect("button_press_event", on_click)
-
-root.after(1000, lambda: build_graph_dynamically(G, delay))
-tk.mainloop()
-
-
 def nx_to_matrix(graph):
-    # Function to convert a NetworkX graph to an adjacency matrix
     nodes = list(graph.nodes())
     num_nodes = len(nodes)
     node_to_index = {node: index for index, node in enumerate(nodes)}
@@ -168,4 +126,95 @@ def nx_to_matrix(graph):
     return matrix
 
 
-print(nx_to_matrix(G))
+def draw_path(G, path, ax, pos):
+    edges = [(path[i], path[i + 1]) for i in range(len(path) - 1)]
+    arc_rad = 0.1
+
+    for edge in edges:
+        if (edge[1], edge[0]) in G.edges():
+            nx.draw_networkx_edges(G, pos, edgelist=[edge], edge_color='orange', width=3,
+                                   ax=ax, connectionstyle=f'arc3, rad = {arc_rad}')
+        else:
+            nx.draw_networkx_edges(G, pos, edgelist=[edge], edge_color='orange', width=3, ax=ax)
+
+
+def monte_carlo_widest_path(graph, start_node, end_node, iterations=3000, randomness_factor=0.2):
+    best_path = None
+    best_min_width = -np.inf
+
+    for _ in range(iterations):
+        path = [start_node]
+        current_node = start_node
+        min_width = np.inf
+
+        while current_node != end_node:
+            next_nodes = [n for n, d in graph[current_node].items() if 'weight' in d]
+            if len(next_nodes) == 0:
+                break
+
+            if random.random() < randomness_factor:
+                chosen_node = random.choice(next_nodes)
+            else:
+                widths = [graph[current_node][n]['weight'] for n in next_nodes]
+                max_width_index = np.argmax(widths)
+                chosen_node = next_nodes[max_width_index]
+
+            if chosen_node in path:
+                break
+
+            min_width = min(min_width, graph[current_node][chosen_node]['weight'])
+            current_node = chosen_node
+            path.append(current_node)
+
+        if current_node == end_node and min_width > best_min_width:
+            best_path = path
+            best_min_width = min_width
+
+    return best_path, best_min_width
+
+
+def on_click(event):
+    global start_node, end_node
+    if event.xdata is None or event.ydata is None:
+        return
+    for node, node_pos in pos.items():
+        distance = (
+            (event.xdata - node_pos[0]) ** 2 + (event.ydata - node_pos[1]) ** 2) ** 0.5
+        if distance < 0.1:
+            if start_node is None:
+                start_node = node
+                draw_graph(G, highlight=[start_node])
+                canvas.draw()
+                messagebox.showinfo("Info", f"Start node set to {node}")
+            elif end_node is None and node != start_node:
+                end_node = node
+                draw_graph(G, highlight=[start_node, end_node])
+                canvas.draw()
+                messagebox.showinfo("Info", f"End node set to {node}")
+                widest_path, widest_min_width = monte_carlo_widest_path(G, start_node, end_node)
+                if widest_path:
+                    draw_path(G, widest_path, ax, pos)
+                    canvas.draw()
+                    print("Widest Path:", widest_path, "with widest minimum width:", widest_min_width)
+                    start_node, end_node = None, None
+            return
+    messagebox.showinfo("Info", "No node was clicked.")
+
+
+root = tk.Tk()
+root.wm_title("Visualization")
+fig, ax = plt.subplots(figsize=(10, 7))
+canvas = FigureCanvasTkAgg(fig, master=root)
+G = parse_graph(file_path)
+# pos = nx.circular_layout(G)
+pos = nx.spring_layout(G)
+
+start_node = None
+end_node = None
+
+canvas_widget = canvas.get_tk_widget()
+canvas_widget.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+canvas.mpl_connect("button_press_event", on_click)
+
+root.after(1000, lambda: build_graph_dynamically(G, delay))
+tk.mainloop()
