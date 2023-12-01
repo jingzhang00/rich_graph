@@ -59,13 +59,13 @@ def build_graph_dynamically(graph, delay):
                     node, neighbor, weight=graph[node][neighbor]['weight'])
                 dynamic_graph.add_node(neighbor)
                 draw_graph(dynamic_graph, highlight=[
-                           (node, neighbor)], update=True)
+                           (node, neighbor), neighbor], update=True)
                 time.sleep(delay)
             elif (node, neighbor) not in dynamic_graph.edges:
                 dynamic_graph.add_edge(
                     node, neighbor, weight=graph[node][neighbor]['weight'])
                 draw_graph(dynamic_graph, highlight=[
-                           (node, neighbor)], update=True)
+                           (node, neighbor), neighbor], update=True)
                 time.sleep(delay)
     draw_graph(dynamic_graph, update=True)
     messagebox.showinfo("Info", "Graph construction complete.")
@@ -77,36 +77,31 @@ def draw_graph(graph, highlight=None, update=False):
     nx.draw_networkx_nodes(graph, pos, node_size=node_size, node_color='skyblue', ax=ax)
     nx.draw_networkx_labels(graph, pos, ax=ax)
 
-    # Determine curved and straight edges
     edge_weights = nx.get_edge_attributes(graph, 'weight')
     curved_edges = [edge for edge in graph.edges() if reversed(edge) in graph.edges() and edge in edge_weights]
     straight_edges = list(set(graph.edges()) - set(curved_edges))
 
-    # Draw all edges normally
     nx.draw_networkx_edges(graph, pos, ax=ax, edgelist=straight_edges, edge_color='gray', width=2, arrowstyle='-|>', arrowsize=15)
     arc_rad = 0.1
     nx.draw_networkx_edges(graph, pos, ax=ax, edgelist=curved_edges, connectionstyle=f'arc3, rad = {arc_rad}', edge_color='gray', width=2, arrowstyle='-|>', arrowsize=15)
 
-    # Highlight new edges and nodes
     if highlight:
         for item in highlight:
             if isinstance(item, tuple):
                 if item in curved_edges or (item[1], item[0]) in curved_edges:
-                    nx.draw_networkx_edges(graph, pos, edgelist=[item], edge_color='red', width=2,
+                    nx.draw_networkx_edges(graph, pos, edgelist=[item], edge_color='red', width=3,
                                            arrowstyle='-|>', arrowsize=20, ax=ax, connectionstyle=f'arc3, rad = {arc_rad}')
                 else:
-                    nx.draw_networkx_edges(graph, pos, edgelist=[item], edge_color='red', width=2,
+                    nx.draw_networkx_edges(graph, pos, edgelist=[item], edge_color='red', width=3,
                                            arrowstyle='-|>', arrowsize=20, ax=ax)
-            else:
+            else:  # This is a node
                 nx.draw_networkx_nodes(graph, pos, nodelist=[item], node_size=node_size, node_color='green', ax=ax)
 
-    # Draw edge labels after highlighting (so they appear on top)
     curved_edge_labels = {edge: edge_weights.get(edge) for edge in curved_edges}
     straight_edge_labels = {edge: edge_weights.get(edge) for edge in straight_edges}
-    my_nx.my_draw_networkx_edge_labels(graph, pos, ax=ax, edge_labels=curved_edge_labels, rotate=False, rad=arc_rad)
-    nx.draw_networkx_edge_labels(graph, pos, ax=ax, edge_labels=straight_edge_labels, rotate=False)
+    my_nx.my_draw_networkx_edge_labels(graph, pos, ax=ax, edge_labels=curved_edge_labels, font_size=12, rotate=False, rad=arc_rad)
+    nx.draw_networkx_edge_labels(graph, pos, ax=ax, edge_labels=straight_edge_labels, font_size=12, rotate=False)
 
-    # Highlight the start and end nodes if they are set
     if start_node is not None:
         nx.draw_networkx_nodes(graph, pos, nodelist=[start_node], node_size=node_size, node_color='red', ax=ax)
     if end_node is not None:
