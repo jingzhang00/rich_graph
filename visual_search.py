@@ -8,14 +8,6 @@ import numpy as np
 import my_networkx as my_nx
 import random
 
-file_path = 'data/task_graph/multiple_demos/task_graph.txt'
-delay = 0.5
-node_color = '#4f5d75'
-highlight_color = '#ffc857'
-edge_color = '#bfc0c0'
-start_color = '#db3a34'
-end_color = '#177e89'
-
 
 def parse_graph(file_path):
     graph = nx.DiGraph()
@@ -210,6 +202,14 @@ def clear_highlight():
 
 
 if __name__ == "__main__":
+    file_path = 'data/task_graph/multiple_demos/task_graph.txt'
+    delay = 0.5
+    node_color = '#4f5d75'
+    highlight_color = '#ffc857'
+    edge_color = '#bfc0c0'
+    start_color = '#db3a34'
+    end_color = '#177e89'
+
     root = tk.Tk()
     root.wm_title("Visualization")
     fig, ax = plt.subplots(figsize=(10, 7), dpi=100)
