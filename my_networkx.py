@@ -3,7 +3,7 @@ def my_draw_networkx_edge_labels(
     pos,
     edge_labels=None,
     label_pos=0.5,
-    font_size=6,
+    font_size=8,
     font_color="k",
     font_family="sans-serif",
     font_weight="normal",
