@@ -225,7 +225,7 @@ if __name__ == "__main__":
     canvas_widget.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
     canvas.mpl_connect("button_press_event", on_click)
 
-    clear_button = tk.Button(root, text="Clear", command=clear_highlight, font=("Helvetica", 12))
+    clear_button = tk.Button(root, text="Clear", command=clear_highlight, font=("Helvetica", 10))
     clear_button.pack(side=tk.BOTTOM, padx=20, pady=10)
 
     root.after(1000, lambda: build_graph(G, delay))

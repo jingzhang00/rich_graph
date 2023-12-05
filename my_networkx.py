@@ -3,7 +3,7 @@ def my_draw_networkx_edge_labels(
     pos,
     edge_labels=None,
     label_pos=0.5,
-    font_size=10,
+    font_size=6,
     font_color="k",
     font_family="sans-serif",
     font_weight="normal",
@@ -134,7 +134,9 @@ def my_draw_networkx_edge_labels(
             trans_angle = 0.0
         # use default box of white with white border
         if bbox is None:
-            bbox = dict(boxstyle="round", ec=(1.0, 1.0, 1.0), fc=(1.0, 1.0, 1.0))
+            # bbox = dict(boxstyle="round", ec=(1.0, 1.0, 1.0), fc=(1.0, 1.0, 1.0))
+            bbox = dict(boxstyle="round,pad=0.1", ec=(1.0, 1.0, 1.0, 1), fc=(1.0, 1.0, 1.0, 1))
+
         if not isinstance(label, str):
             label = str(label)  # this makes "1" and 1 labeled the same
 
