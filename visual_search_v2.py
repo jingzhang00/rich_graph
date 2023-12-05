@@ -166,35 +166,30 @@ def nx_to_matrix(graph):
 def monte_carlo_widest_path(graph, start_node, end_node, iterations=3000, randomness_factor=0.2):
     best_path = None
     best_min_width = -np.inf
-
     for _ in range(iterations):
         path = [start_node]
+        visited = set([start_node])
         current_node = start_node
         min_width = np.inf
 
         while current_node != end_node:
-            next_nodes = [n for n, d in graph[current_node].items() if 'weight' in d]
+            next_nodes = [n for n, d in graph[current_node].items() if 'weight' in d and n not in visited]
             if len(next_nodes) == 0:
                 break
-
             if random.random() < randomness_factor:
                 chosen_node = random.choice(next_nodes)
             else:
                 widths = [graph[current_node][n]['weight'] for n in next_nodes]
                 max_width_index = np.argmax(widths)
                 chosen_node = next_nodes[max_width_index]
-
-            if chosen_node in path:
-                break
-
             min_width = min(min_width, graph[current_node][chosen_node]['weight'])
             current_node = chosen_node
             path.append(current_node)
+            visited.add(current_node)
 
         if current_node == end_node and min_width > best_min_width:
             best_path = path
             best_min_width = min_width
-
     return best_path, best_min_width
 
 
@@ -242,6 +237,13 @@ def modify_file(file_path):
         file.writelines(corrected_lines)
 
 
+def clear_highlight():
+    global start_node, end_node
+    start_node, end_node = None, None
+    draw_graph(G)
+    canvas.draw()
+
+
 if __name__ == "__main__":
     file_path = 'data/task_graph/multiple_demos/task_graph.txt'
     # modify_file(file_path)
@@ -269,6 +271,9 @@ if __name__ == "__main__":
     canvas_widget = canvas.get_tk_widget()
     canvas_widget.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
     canvas.mpl_connect("button_press_event", on_click)
+
+    clear_button = tk.Button(root, text="Clear", command=clear_highlight, font=("Helvetica", 12))
+    clear_button.pack(side=tk.BOTTOM, padx=20, pady=10)
 
     root.after(1000, lambda: build_graph(G, delay))
     tk.mainloop()

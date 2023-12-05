@@ -16,6 +16,7 @@ edge_color = '#bfc0c0'
 start_color = '#db3a34'
 end_color = '#177e89'
 
+
 def parse_graph(file_path):
     graph = nx.DiGraph()
     with open(file_path, 'r') as file:
@@ -47,7 +48,7 @@ def parse_graph(file_path):
     return graph
 
 
-def build_graph_dynamically(graph, delay):
+def build_graph(graph, delay):
     dynamic_graph = nx.DiGraph()
     for node in graph.nodes:
         if node not in dynamic_graph:
@@ -145,36 +146,32 @@ def nx_to_matrix(graph):
 def monte_carlo_widest_path(graph, start_node, end_node, iterations=3000, randomness_factor=0.2):
     best_path = None
     best_min_width = -np.inf
-
     for _ in range(iterations):
         path = [start_node]
+        visited = set([start_node])
         current_node = start_node
         min_width = np.inf
 
         while current_node != end_node:
-            next_nodes = [n for n, d in graph[current_node].items() if 'weight' in d]
+            next_nodes = [n for n, d in graph[current_node].items() if 'weight' in d and n not in visited]
             if len(next_nodes) == 0:
                 break
-
             if random.random() < randomness_factor:
                 chosen_node = random.choice(next_nodes)
             else:
                 widths = [graph[current_node][n]['weight'] for n in next_nodes]
                 max_width_index = np.argmax(widths)
                 chosen_node = next_nodes[max_width_index]
-
-            if chosen_node in path:
-                break
-
             min_width = min(min_width, graph[current_node][chosen_node]['weight'])
             current_node = chosen_node
             path.append(current_node)
+            visited.add(current_node)
 
         if current_node == end_node and min_width > best_min_width:
             best_path = path
             best_min_width = min_width
-
     return best_path, best_min_width
+
 
 
 def on_click(event):
@@ -205,20 +202,31 @@ def on_click(event):
     messagebox.showinfo("Info", "No node was clicked.")
 
 
-root = tk.Tk()
-root.wm_title("Visualization")
-fig, ax = plt.subplots(figsize=(10, 7), dpi=100)
-canvas = FigureCanvasTkAgg(fig, master=root)
-G = parse_graph(file_path)
-# pos = nx.circular_layout(G)
-pos = nx.spring_layout(G)
+def clear_highlight():
+    global start_node, end_node
+    start_node, end_node = None, None
+    draw_graph(G)
+    canvas.draw()
 
-start_node = None
-end_node = None
 
-canvas_widget = canvas.get_tk_widget()
-canvas_widget.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
-canvas.mpl_connect("button_press_event", on_click)
+if __name__ == "__main__":
+    root = tk.Tk()
+    root.wm_title("Visualization")
+    fig, ax = plt.subplots(figsize=(10, 7), dpi=100)
+    canvas = FigureCanvasTkAgg(fig, master=root)
+    G = parse_graph(file_path)
+    # pos = nx.circular_layout(G)
+    pos = nx.spring_layout(G)
 
-root.after(1000, lambda: build_graph_dynamically(G, delay))
-tk.mainloop()
+    start_node = None
+    end_node = None
+
+    canvas_widget = canvas.get_tk_widget()
+    canvas_widget.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+    canvas.mpl_connect("button_press_event", on_click)
+
+    clear_button = tk.Button(root, text="Clear", command=clear_highlight, font=("Helvetica", 12))
+    clear_button.pack(side=tk.BOTTOM, padx=20, pady=10)
+
+    root.after(1000, lambda: build_graph(G, delay))
+    tk.mainloop()
