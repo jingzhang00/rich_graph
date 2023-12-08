@@ -1,13 +1,19 @@
 import tkinter as tk
+from tkinter import ttk
 from tkinter import messagebox
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import networkx as nx
 import time
-import numpy as np
 import my_networkx as my_nx
-import random
-from pre_eff import ActivityProcessor
+import utils
+
+
+node_color = '#4f5d75'
+highlight_color = '#ffc857'
+edge_color = '#bfc0c0'
+start_color = '#db3a34'
+end_color = '#177e89'
 
 
 def parse_graph(file_path):
@@ -67,45 +73,6 @@ def build_graph(graph, delay):
     messagebox.showinfo("Info", "Graph construction complete.")
 
 
-def refine(effect, precondition):
-    for key, value in precondition.items():
-        if key not in effect or effect[key] != value:
-            return False
-    return True
-
-
-def match(precondition, effect):
-    for key, precondition_values in precondition.items():
-        if key in effect:
-            effect_values = effect[key]
-            if not any(value in effect_values for value in precondition_values):
-                return False
-        else:
-            return False
-    return True
-
-
-def refine_graph(graph, rich_info):
-    refined_graph = nx.DiGraph()
-    for node in graph.nodes:
-        refined_graph.add_node(node)
-
-    for u, v, data in graph.edges(data=True):
-        if 'effect' in rich_info[u] and 'precondition' in rich_info[v]:
-            eff = rich_info[u]['effect']
-            pre = rich_info[v]['precondition']
-            if match(pre, eff):
-                refined_graph.add_edge(u, v, weight=data['weight'])
-            else:
-                print("Remove edge: \n")
-                print("Current node: ", u)
-                print("effect: ", eff)
-                print("neighbor: ", v)
-                print("precondition: ", pre)
-
-    return refined_graph
-
-
 def draw_graph(graph, highlight=None, update=False):
     ax.clear()
     node_size = 600
@@ -159,52 +126,6 @@ def draw_path(G, path, ax, pos):
             nx.draw_networkx_edges(G, pos, edgelist=[edge], edge_color=highlight_color, width=3, ax=ax)
 
 
-def nx_to_matrix(graph):
-    nodes = list(graph.nodes())
-    num_nodes = len(nodes)
-    node_to_index = {node: index for index, node in enumerate(nodes)}
-
-    matrix = np.zeros((num_nodes, num_nodes))
-
-    for edge in graph.edges(data=True):
-        source, target, data = edge
-        source_index = node_to_index[source]
-        target_index = node_to_index[target]
-        matrix[source_index][target_index] = data['weight']
-
-    return matrix
-
-
-def monte_carlo_widest_path(graph, start_node, end_node, iterations=3000, randomness_factor=0.2):
-    best_path = None
-    best_min_width = -np.inf
-    for _ in range(iterations):
-        path = [start_node]
-        visited = set([start_node])
-        current_node = start_node
-        min_width = np.inf
-
-        while current_node != end_node:
-            next_nodes = [n for n, d in graph[current_node].items() if 'weight' in d and n not in visited]
-            if len(next_nodes) == 0:
-                break
-            if random.random() < randomness_factor:
-                chosen_node = random.choice(next_nodes)
-            else:
-                widths = [graph[current_node][n]['weight'] for n in next_nodes]
-                max_width_index = np.argmax(widths)
-                chosen_node = next_nodes[max_width_index]
-            min_width = min(min_width, graph[current_node][chosen_node]['weight'])
-            current_node = chosen_node
-            path.append(current_node)
-            visited.add(current_node)
-
-        if current_node == end_node and min_width > best_min_width:
-            best_path = path
-            best_min_width = min_width
-    return best_path, best_min_width
-
-
 def on_click(event):
     global start_node, end_node
     if event.xdata is None or event.ydata is None:
@@ -223,7 +144,7 @@ def on_click(event):
                 draw_graph(G, highlight=[start_node, end_node])
                 canvas.draw()
                 messagebox.showinfo("Info", f"End node set to {node}")
-                widest_path, widest_min_width = monte_carlo_widest_path(G, start_node, end_node)
+                widest_path, widest_min_width = utils.monte_carlo_widest_path(G, start_node, end_node)
                 if widest_path:
                     draw_path(G, widest_path, ax, pos)
                     canvas.draw()
@@ -233,23 +154,6 @@ def on_click(event):
     messagebox.showinfo("Info", "No node was clicked.")
 
 
-def modify_file(file_path):
-    # run once to remove the suffix part of granular activity
-    with open(file_path, 'r') as file:
-        lines = file.readlines()
-    corrected_lines = []
-    for line in lines:
-        if 'GranularActivity_' in line:
-            parts = line.split('GranularActivity_')
-            identifier = 'GranularActivity_' + parts[1].split(' ')[0]
-            new_line = parts[0] + identifier + '\n'
-            corrected_lines.append(new_line)
-        else:
-            corrected_lines.append(line)
-    with open(file_path, 'w') as file:
-        file.writelines(corrected_lines)
-
-
 def clear_highlight():
     global start_node, end_node
     start_node, end_node = None, None
@@ -257,29 +161,13 @@ def clear_highlight():
     canvas.draw()
 
 
-def refine_button():
-    global G
-    G = refine_graph(G, rich_info)
-    draw_graph(G)
-
-
 if __name__ == "__main__":
     file_path = 'data/task_graph/multiple_demos/task_graph.txt'
-    # modify_file(file_path)
     delay = 0.5
-    threshold = 30
-    node_color = '#4f5d75'
-    highlight_color = '#ffc857'
-    edge_color = '#bfc0c0'
-    start_color = '#db3a34'
-    end_color = '#177e89'
-    path = 'data/task_graph/multiple_demos'
     root = tk.Tk()
     root.wm_title("Visualization")
     fig, ax = plt.subplots(figsize=(10, 7), dpi=100)
     canvas = FigureCanvasTkAgg(fig, master=root)
-    processor = ActivityProcessor(path, threshold)
-    rich_info = processor.rich_info
     G = parse_graph(file_path)
     # pos = nx.circular_layout(G)
     pos = nx.spring_layout(G)
@@ -287,15 +175,21 @@ if __name__ == "__main__":
     start_node = None
     end_node = None
 
+    style = ttk.Style()
+    style.configure('TButton', font=('Helvetica', 12))
+
+    outer_frame = tk.Frame(root)
+    outer_frame.pack(side=tk.RIGHT, fill=tk.Y, expand=False)
+
+    button_frame = tk.Frame(outer_frame)
+    button_frame.pack(side=tk.TOP, expand=True)
+
+    clear = ttk.Button(button_frame, text="Clear", command=clear_highlight)
+    clear.pack(padx=10, pady=10)
+
     canvas_widget = canvas.get_tk_widget()
-    canvas_widget.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+    canvas_widget.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
     canvas.mpl_connect("button_press_event", on_click)
-
-    clear = tk.Button(root, text="Clear", command=clear_highlight, font=("Helvetica", 12))
-    clear.pack(side=tk.BOTTOM, padx=20, pady=10)
-
-    refine = tk.Button(root, text="Refine", command=refine_button, font=("Helvetica", 12))
-    refine.pack(side=tk.BOTTOM, padx=20, pady=10)
 
     root.after(1000, lambda: build_graph(G, delay))
     tk.mainloop()

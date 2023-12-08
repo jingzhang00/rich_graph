@@ -59,7 +59,7 @@ def filter_data(df, threshold):
     return filtered_df.reset_index(drop=True)
 
 
-def extract(df):
+def extract(df, threshold):
     df_filter = filter_data(df, threshold)
     df_filter.reset_index(drop=True)
     buffer = {}
@@ -82,19 +82,27 @@ def extract(df):
                         'precondition': precondition,
                         'effect': effect
                     }
-                # if last_activity == "Reach":
-                #     print(buffer[last_activity]["effect"])
-            print("Last activity:", last_activity)
-            print("Current activity:", activity)
-            print(df_filter)
             start_index = index
             last_activity = activity
 
+    if last_activity is not None:
+        activity_df = df_filter.iloc[start_index:]
+        precondition = activity_df.iloc[0][0:4].to_dict()
+        effect = activity_df.iloc[-1][0:4].to_dict()
+
+        if last_activity in buffer:
+            buffer[last_activity]['precondition'] = simplify_dict(buffer[last_activity]['precondition'], precondition)
+            buffer[last_activity]['effect'] = simplify_dict(buffer[last_activity]['effect'], effect)
+        else:
+            buffer[last_activity] = {
+                'precondition': precondition,
+                'effect': effect
+            }
     return buffer
 
 
 class ActivityProcessor:
-    def __init__(self, path, threshold):
+    def __init__(self, path, threshold=20):
         self.path = path
         self.threshold = threshold
         self.rich_info = self.merge()
@@ -116,7 +124,7 @@ class ActivityProcessor:
     def process_sequence(self, file_path):
         filtered_df = self.read_data(file_path)
         sequence = filtered_df.loc[(filtered_df.shift() != filtered_df).any(axis=1)]
-        sequence = extract(sequence)
+        sequence = extract(sequence, self.threshold)
         return sequence
 
     def merge(self):
@@ -142,7 +150,7 @@ class ActivityProcessor:
 
 if __name__ == "__main__":
     path = 'data/task_graph/multiple_demos'
-    threshold = 30
+    threshold = 20
     processor = ActivityProcessor(path, threshold)
     rich_info = processor.rich_info
-    # pprint.pprint(rich_info, width=80, compact=True)
+    pprint.pprint(rich_info, width=80, compact=True)
