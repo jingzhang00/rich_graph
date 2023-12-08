@@ -16,9 +16,12 @@ Once the graph is built, you can select start node and end node by click it, the
 
 `Clear` means you can clear the selected nodes and choose another pair.
 
+
 `Refine` will remove unnecessary edge and node through additional rich information.
 
 <img src="img/refined_graph.png" height="75%" width="75%">
+
+<img src="img/solution_path1.png" height="75%" width="75%">
 
 `Recover` will back to original graph structure.
 
