@@ -3,6 +3,13 @@ import numpy as np
 import random
 
 def match(precondition, effect):
+    for key in precondition:
+        if not isinstance(precondition[key], list):
+            precondition[key] = [precondition[key]]
+    for key in effect:
+        if not isinstance(effect[key], list):
+            effect[key] = [effect[key]]
+
     for key, precondition_values in precondition.items():
         if key in effect:
             effect_values = effect[key]

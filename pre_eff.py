@@ -32,6 +32,7 @@ def simplify_dict(dict1, dict2):
 
 
 def filter_data(df, threshold):
+    df = df[df['Activity'] != 'UnknownActivity']
     activity_idx = []
     last_activity = None
     remove_indices = []
@@ -149,7 +150,7 @@ class ActivityProcessor:
 
 
 if __name__ == "__main__":
-    path = 'data/task_graph/multiple_demos'
+    path = 'data/task_graph/2023-11-27-15-09-22'
     threshold = 20
     processor = ActivityProcessor(path, threshold)
     rich_info = processor.rich_info
