@@ -193,9 +193,9 @@ def save_graph():
 
 
 if __name__ == "__main__":
-    task_graph = 'data/task_graph/multiple_demos/task_graph.txt'
+    task_graph = 'data/13_demos/task_graph.txt'
     # modify_file(file_path)
-    info_path = 'data/task_graph/multiple_demos'
+    info_path = 'data/13_demos'
     root = tk.Tk()
     root.wm_title("Visualization")
     fig, ax = plt.subplots(figsize=(10, 7), dpi=100)

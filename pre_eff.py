@@ -32,7 +32,6 @@ def simplify_dict(dict1, dict2):
 
 
 def filter_data(df, threshold):
-    df = df[df['Activity'] != 'UnknownActivity']
     activity_idx = []
     last_activity = None
     remove_indices = []
@@ -125,6 +124,7 @@ class ActivityProcessor:
     def process_sequence(self, file_path):
         filtered_df = self.read_data(file_path)
         sequence = filtered_df.loc[(filtered_df.shift() != filtered_df).any(axis=1)]
+        sequence = sequence[sequence['Activity'] != 'UnknownActivity']
         sequence = extract(sequence, self.threshold)
         return sequence
 
@@ -150,7 +150,7 @@ class ActivityProcessor:
 
 
 if __name__ == "__main__":
-    path = 'data/task_graph/2023-11-27-15-09-22'
+    path = 'data/13_demos'
     threshold = 20
     processor = ActivityProcessor(path, threshold)
     rich_info = processor.rich_info

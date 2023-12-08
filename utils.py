@@ -26,21 +26,24 @@ def refine_graph(graph, rich_info):
         refined_graph.add_node(node)
 
     for u, v, data in graph.edges(data=True):
-        if 'effect' in rich_info[u] and 'precondition' in rich_info[v]:
-            eff = rich_info[u]['effect']
-            pre = rich_info[v]['precondition']
-            if match(pre, eff):
-                refined_graph.add_edge(u, v, weight=data['weight'])
-            else:
-                print("=======================================")
-                print("Remove edge")
-                print("Current node: ", u)
-                print("effect: ", eff)
-                print("neighbor: ", v)
-                print("precondition: ", pre)
-                print("=======================================")
-
+        if u in rich_info and v in rich_info:
+            if 'effect' in rich_info[u] and 'precondition' in rich_info[v]:
+                eff = rich_info[u]['effect']
+                pre = rich_info[v]['precondition']
+                if match(pre, eff):
+                    refined_graph.add_edge(u, v, weight=data['weight'])
+                else:
+                    print("=======================================")
+                    print("Remove edge due to mismatch")
+                    print("Current node: ", u)
+                    print("effect: ", eff)
+                    print("neighbor: ", v)
+                    print("precondition: ", pre)
+                    print("=======================================")
+        else:
+            print(f"Removing edge ({u}, {v}) as one or both nodes are not in rich_info.")
     return refined_graph
+
 
 
 def refine(effect, precondition):
