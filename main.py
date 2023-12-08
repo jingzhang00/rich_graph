@@ -8,7 +8,6 @@ import my_networkx as my_nx
 import time
 from pre_eff import ActivityProcessor
 import utils
-import os
 from tkinter import filedialog
 
 
@@ -204,8 +203,8 @@ if __name__ == "__main__":
     processor = ActivityProcessor(info_path)
     rich_info = processor.rich_info
     G = parse_graph(task_graph)
-    # pos = nx.circular_layout(G)
-    pos = nx.spring_layout(G)
+    pos = nx.planar_layout(G)
+    # pos = nx.spring_layout(G, k=3, iterations=20, seed=0)
 
     start_node = None
     end_node = None

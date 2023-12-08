@@ -43,20 +43,18 @@ def filter_data(df, threshold):
     for i in range(len(activity_idx) - 1):
         if activity_idx[i + 1] - activity_idx[i] < threshold:
             remove_indices.extend(range(activity_idx[i], activity_idx[i + 1]))
+
+    for i in range(1, len(activity_idx) - 1):
+        current_index = activity_idx[i]
+        previous_index = activity_idx[i - 1]
+        next_index = activity_idx[i + 1]
+        if df.at[current_index, 'Activity'] == 'IdleMotion':
+            if df.at[previous_index, 'Activity'] == df.at[next_index, 'Activity']:
+                remove_indices.extend(df.loc[current_index:next_index].index)
+
     mask = ~df.index.isin(remove_indices)
     df = df[mask]
-
-    non_idle_indices = df[df['Activity'] != 'IdleMotion'].index
-    if len(non_idle_indices) == 0:
-        return df
-    first_non_idle = non_idle_indices[0]
-    last_non_idle = non_idle_indices[-1]
-    start_df = df.iloc[:first_non_idle]
-    middle_df = df.iloc[first_non_idle:last_non_idle + 1]
-    middle_df = middle_df[middle_df['Activity'] != 'IdleMotion']
-    end_df = df.iloc[last_non_idle:]
-    filtered_df = pd.concat([start_df, middle_df, end_df])
-    return filtered_df.reset_index(drop=True)
+    return df.reset_index(drop=True)
 
 
 def extract(df, threshold):
