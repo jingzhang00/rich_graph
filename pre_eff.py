@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+import pprint
 
 
 def flatten_and_unique(lst):
@@ -30,40 +31,66 @@ def simplify_dict(dict1, dict2):
     return {k: flatten_and_unique(v) for k, v in combined_dict.items()}
 
 
+def filter_data(df, threshold):
+    activity_idx = []
+    last_activity = None
+    remove_indices = []
+    for index, row in df.iterrows():
+        current_activity = row['Activity']
+        if current_activity != last_activity:
+            activity_idx.append(index)
+            last_activity = current_activity
+    for i in range(len(activity_idx) - 1):
+        if activity_idx[i + 1] - activity_idx[i] < threshold:
+            remove_indices.extend(range(activity_idx[i], activity_idx[i + 1]))
+    mask = ~df.index.isin(remove_indices)
+    df = df[mask]
+
+    non_idle_indices = df[df['Activity'] != 'IdleMotion'].index
+    if len(non_idle_indices) == 0:
+        return df
+    first_non_idle = non_idle_indices[0]
+    last_non_idle = non_idle_indices[-1]
+    start_df = df.iloc[:first_non_idle]
+    middle_df = df.iloc[first_non_idle:last_non_idle + 1]
+    middle_df = middle_df[middle_df['Activity'] != 'IdleMotion']
+    end_df = df.iloc[last_non_idle:]
+    filtered_df = pd.concat([start_df, middle_df, end_df])
+    return filtered_df.reset_index(drop=True)
+
+
 def extract(df):
-    activities = df['Activity']
-    last_non_idle_index = (activities != 'IdleMotion').to_numpy().nonzero()[0][-1]
-    if last_non_idle_index < len(activities) - 1:
-        df = df.iloc[:last_non_idle_index + 1]
-    df = df.reset_index(drop=True)
+    df_filter = filter_data(df, threshold)
+    df_filter.reset_index(drop=True)
     buffer = {}
     last_activity = None
     start_index = 0
-    activities = activities.reset_index(drop=True)
-    for index, activity in activities.items():
+
+    for index, activity in enumerate(df_filter['Activity']):
         if activity != last_activity:
             if last_activity is not None:
-                activity_df = df.iloc[start_index:index]
+                activity_df = df_filter.iloc[start_index:index]
                 precondition = activity_df.iloc[0][0:4].to_dict()
                 effect = activity_df.iloc[-1][0:4].to_dict()
-                if last_activity not in buffer:
+
+                if last_activity in buffer:
+                    buffer[last_activity]['precondition'] = simplify_dict(buffer[last_activity]['precondition'],
+                                                                          precondition)
+                    buffer[last_activity]['effect'] = simplify_dict(buffer[last_activity]['effect'], effect)
+                else:
                     buffer[last_activity] = {
                         'precondition': precondition,
                         'effect': effect
                     }
-                else:
-                    previous_precondition = buffer[last_activity]['precondition']
-                    previous_effect = buffer[last_activity]['effect']
-                    updated_precondition = simplify_dict(previous_precondition, precondition)
-                    updated_effect = simplify_dict(previous_effect, effect)
-                    buffer[last_activity] = {
-                        'precondition': updated_precondition,
-                        'effect': updated_effect
-                    }
-            last_activity = activity
+                # if last_activity == "Reach":
+                #     print(buffer[last_activity]["effect"])
+            print("Last activity:", last_activity)
+            print("Current activity:", activity)
+            print(df_filter)
             start_index = index
-    return buffer
+            last_activity = activity
 
+    return buffer
 
 
 class ActivityProcessor:
@@ -79,14 +106,8 @@ class ActivityProcessor:
         data_lines = line[start_index:]
         df = pd.DataFrame([line.strip().split('\t') for line in data_lines if line.strip() != ''],
                           columns=['Hand', 'ObjectActedOn', 'ObjectInHand', 'HandState', 'Activity'])
-        activity_counts = df['Activity'].value_counts()
-        filtered_activities = activity_counts[activity_counts >= self.threshold].index.tolist()
-        filtered_df = df[df['Activity'].isin(filtered_activities)].copy()
-        filtered_df.loc[filtered_df['ObjectInHand'] == 'Main Camera', 'ObjectInHand'] = 'NONE'
-        filtered_df.loc[filtered_df['ObjectActedOn'] != 'NONE', 'ObjectActedOn'] = 'Something'
-        filtered_df.loc[filtered_df['Hand'] == 'ToolUse', 'Hand'] = 'Moving'
-        filtered_df.loc[filtered_df['Hand'] == 'Move', 'Hand'] = 'Moving'
-        return filtered_df
+        df.loc[df['ObjectInHand'] == 'Main Camera', 'ObjectInHand'] = 'NONE'
+        return df
 
     def only_idlemotion(self, file_path):
         filtered_df = self.read_data(file_path)
@@ -124,4 +145,4 @@ if __name__ == "__main__":
     threshold = 30
     processor = ActivityProcessor(path, threshold)
     rich_info = processor.rich_info
-    print(rich_info)
+    # pprint.pprint(rich_info, width=80, compact=True)

@@ -10,25 +10,7 @@ import random
 from pre_eff import ActivityProcessor
 
 
-def refine(effect, precondition):
-    for key, value in precondition.items():
-        if key not in effect or effect[key] != value:
-            return False
-    return True
-
-
-def match(precondition, effect):
-    for key, precondition_values in precondition.items():
-        if key in effect:
-            effect_values = effect[key]
-            if not any(value in effect_values for value in precondition_values):
-                return False
-        else:
-            return False
-    return True
-
-
-def parse_graph(file_path, rich_info):
+def parse_graph(file_path):
     graph = nx.DiGraph()
     with open(file_path, 'r') as file:
         current_node = None
@@ -39,16 +21,7 @@ def parse_graph(file_path, rich_info):
             if 'name:' in line:
                 if current_node and neighbors:
                     for neighbor, weight in zip(neighbors, weights):
-                        eff = rich_info[current_node]['effect']
-                        pre = rich_info[neighbor]['precondition']
-                        if match(pre, eff):
-                            graph.add_edge(current_node, neighbor, weight=weight)
-                        else:
-                            print("Remove edge: \n")
-                            print("Current node: ", current_node)
-                            print("effect: ", eff)
-                            print("neighbor: ", neighbor)
-                            print("precondition: ", pre)
+                        graph.add_edge(current_node, neighbor, weight=weight)
                 current_node = line.split(':')[1].strip()
                 neighbors = []
                 weights = []
@@ -64,8 +37,8 @@ def parse_graph(file_path, rich_info):
         if current_node and neighbors:
             for neighbor, weight in zip(neighbors, weights):
                 graph.add_edge(current_node, neighbor, weight=weight)
-    return graph
 
+    return graph
 
 
 def build_graph(graph, delay):
@@ -92,6 +65,45 @@ def build_graph(graph, delay):
                 time.sleep(delay)
     draw_graph(dynamic_graph, update=True)
     messagebox.showinfo("Info", "Graph construction complete.")
+
+
+def refine(effect, precondition):
+    for key, value in precondition.items():
+        if key not in effect or effect[key] != value:
+            return False
+    return True
+
+
+def match(precondition, effect):
+    for key, precondition_values in precondition.items():
+        if key in effect:
+            effect_values = effect[key]
+            if not any(value in effect_values for value in precondition_values):
+                return False
+        else:
+            return False
+    return True
+
+
+def refine_graph(graph, rich_info):
+    refined_graph = nx.DiGraph()
+    for node in graph.nodes:
+        refined_graph.add_node(node)
+
+    for u, v, data in graph.edges(data=True):
+        if 'effect' in rich_info[u] and 'precondition' in rich_info[v]:
+            eff = rich_info[u]['effect']
+            pre = rich_info[v]['precondition']
+            if match(pre, eff):
+                refined_graph.add_edge(u, v, weight=data['weight'])
+            else:
+                print("Remove edge: \n")
+                print("Current node: ", u)
+                print("effect: ", eff)
+                print("neighbor: ", v)
+                print("precondition: ", pre)
+
+    return refined_graph
 
 
 def draw_graph(graph, highlight=None, update=False):
@@ -222,6 +234,7 @@ def on_click(event):
 
 
 def modify_file(file_path):
+    # run once to remove the suffix part of granular activity
     with open(file_path, 'r') as file:
         lines = file.readlines()
     corrected_lines = []
@@ -244,6 +257,12 @@ def clear_highlight():
     canvas.draw()
 
 
+def refine_button():
+    global G
+    G = refine_graph(G, rich_info)
+    draw_graph(G)
+
+
 if __name__ == "__main__":
     file_path = 'data/task_graph/multiple_demos/task_graph.txt'
     # modify_file(file_path)
@@ -261,7 +280,7 @@ if __name__ == "__main__":
     canvas = FigureCanvasTkAgg(fig, master=root)
     processor = ActivityProcessor(path, threshold)
     rich_info = processor.rich_info
-    G = parse_graph(file_path, rich_info)
+    G = parse_graph(file_path)
     # pos = nx.circular_layout(G)
     pos = nx.spring_layout(G)
 
@@ -272,8 +291,11 @@ if __name__ == "__main__":
     canvas_widget.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
     canvas.mpl_connect("button_press_event", on_click)
 
-    clear_button = tk.Button(root, text="Clear", command=clear_highlight, font=("Helvetica", 12))
-    clear_button.pack(side=tk.BOTTOM, padx=20, pady=10)
+    clear = tk.Button(root, text="Clear", command=clear_highlight, font=("Helvetica", 12))
+    clear.pack(side=tk.BOTTOM, padx=20, pady=10)
+
+    refine = tk.Button(root, text="Refine", command=refine_button, font=("Helvetica", 12))
+    refine.pack(side=tk.BOTTOM, padx=20, pady=10)
 
     root.after(1000, lambda: build_graph(G, delay))
     tk.mainloop()
