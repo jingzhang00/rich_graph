@@ -32,17 +32,21 @@ def simplify_dict(dict1, dict2):
 
 
 def filter_data(df, threshold):
+    remove_indices = []
+    last_index = None
+    for index, row in df.iterrows():
+        if last_index is not None and index - last_index < threshold:
+            remove_indices.append(last_index)
+        last_index = index
+
     activity_idx = []
     last_activity = None
-    remove_indices = []
+
     for index, row in df.iterrows():
         current_activity = row['Activity']
         if current_activity != last_activity:
             activity_idx.append(index)
             last_activity = current_activity
-    for i in range(len(activity_idx) - 1):
-        if activity_idx[i + 1] - activity_idx[i] < threshold:
-            remove_indices.extend(range(activity_idx[i], activity_idx[i + 1]))
 
     for i in range(1, len(activity_idx) - 1):
         current_index = activity_idx[i]
@@ -67,15 +71,21 @@ def extract(df, threshold):
     for index, activity in enumerate(df_filter['Activity']):
         if activity != last_activity:
             if last_activity is not None:
-                activity_df = df_filter.iloc[start_index:index]
-                precondition = activity_df.iloc[0][0:4].to_dict()
-                effect = activity_df.iloc[-1][0:4].to_dict()
+                current_activity_df = df_filter.iloc[start_index:index]
+                precondition = current_activity_df.iloc[0][0:4].to_dict()
+                next_activity_start = index if index < len(df_filter) else None
 
                 if last_activity in buffer:
                     buffer[last_activity]['precondition'] = simplify_dict(buffer[last_activity]['precondition'],
                                                                           precondition)
-                    buffer[last_activity]['effect'] = simplify_dict(buffer[last_activity]['effect'], effect)
+                    if next_activity_start is not None:
+                        next_activity_df = df_filter.iloc[next_activity_start:next_activity_start + 1]
+                        effect = next_activity_df.iloc[0][0:4].to_dict()
+                        buffer[last_activity]['effect'] = simplify_dict(buffer[last_activity]['effect'], effect)
                 else:
+                    next_activity_df = df_filter.iloc[next_activity_start:next_activity_start + 1]
+                    effect = next_activity_df.iloc[0][0:4].to_dict()
+
                     buffer[last_activity] = {
                         'precondition': precondition,
                         'effect': effect
@@ -86,17 +96,31 @@ def extract(df, threshold):
     if last_activity is not None:
         activity_df = df_filter.iloc[start_index:]
         precondition = activity_df.iloc[0][0:4].to_dict()
-        effect = activity_df.iloc[-1][0:4].to_dict()
 
         if last_activity in buffer:
             buffer[last_activity]['precondition'] = simplify_dict(buffer[last_activity]['precondition'], precondition)
-            buffer[last_activity]['effect'] = simplify_dict(buffer[last_activity]['effect'], effect)
         else:
             buffer[last_activity] = {
                 'precondition': precondition,
-                'effect': effect
+                'effect': {}
             }
     return buffer
+
+
+def read_data(file_path):
+    with open(file_path, 'r') as file:
+        line = file.readlines()
+    start_index = line.index('@data\n') + 1
+    data_lines = line[start_index:]
+    df = pd.DataFrame([line.strip().split('\t') for line in data_lines if line.strip() != ''],
+                      columns=['Hand', 'ObjectActedOn', 'ObjectInHand', 'HandState', 'Activity'])
+    df.loc[df['ObjectInHand'] == 'Main Camera', 'ObjectInHand'] = 'NONE'
+    return df
+
+
+def only_idlemotion(file_path):
+    filtered_df = read_data(file_path)
+    return set(filtered_df['Activity']) == {'IdleMotion'}
 
 
 class ActivityProcessor:
@@ -105,22 +129,8 @@ class ActivityProcessor:
         self.threshold = threshold
         self.rich_info = self.merge()
 
-    def read_data(self, file_path):
-        with open(file_path, 'r') as file:
-            line = file.readlines()
-        start_index = line.index('@data\n') + 1
-        data_lines = line[start_index:]
-        df = pd.DataFrame([line.strip().split('\t') for line in data_lines if line.strip() != ''],
-                          columns=['Hand', 'ObjectActedOn', 'ObjectInHand', 'HandState', 'Activity'])
-        df.loc[df['ObjectInHand'] == 'Main Camera', 'ObjectInHand'] = 'NONE'
-        return df
-
-    def only_idlemotion(self, file_path):
-        filtered_df = self.read_data(file_path)
-        return set(filtered_df['Activity']) == {'IdleMotion'}
-
     def process_sequence(self, file_path):
-        filtered_df = self.read_data(file_path)
+        filtered_df = read_data(file_path)
         sequence = filtered_df.loc[(filtered_df.shift() != filtered_df).any(axis=1)]
         sequence = sequence[sequence['Activity'] != 'UnknownActivity']
         sequence = extract(sequence, self.threshold)
@@ -130,7 +140,7 @@ class ActivityProcessor:
         buffer = {}
         for file_name in ['data4testing_R.txt', 'data4testing_L.txt']:
             file_path = os.path.join(self.path, file_name)
-            if not self.only_idlemotion(file_path):
+            if not only_idlemotion(file_path):
                 dicts = self.process_sequence(file_path)
                 for activity, info in dicts.items():
                     if activity not in buffer:
@@ -149,7 +159,7 @@ class ActivityProcessor:
 
 if __name__ == "__main__":
     path = 'data/13_demos'
-    threshold = 20
+    threshold = 15
     processor = ActivityProcessor(path, threshold)
     rich_info = processor.rich_info
     pprint.pprint(rich_info, width=80, compact=True)
